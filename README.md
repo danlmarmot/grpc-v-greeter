@@ -46,3 +46,21 @@ grpcurl -plaintext -v -d '{"name": "ryan"}' localhost:8080 greeter.v1.Greeter/Sa
 grpcurl -plaintext -v -d '{"first_name": "ryan", "last_name": "okane"}' localhost:8080 greeter.v2.Greeter/SayHello
 grpcurl -plaintext -v -d '{"first_name": "ryan", "last_name": "okane"}' localhost:8080 greeter.v2.Greeter/SayGoodbye
 ```
+## List and Describe
+
+```bash
+> grpcurl -plaintext  localhost:8080 list
+
+greeter.v1.Greeter
+greeter.v2.Greeter
+grpc.reflection.v1alpha.ServerReflection
+
+> grpcurl -plaintext  localhost:8080 describe greeter.v1.Greeter
+
+greeter.v1.Greeter is a service:
+service Greeter {
+  rpc SayGoodbye ( .greeter.v1.SayGoodbyeRequest ) returns ( .greeter.v1.SayGoodbyeResponse );
+  rpc SayHello ( .greeter.v1.SayHelloRequest ) returns ( .greeter.v1.SayHelloResponse );
+}
+
+```
